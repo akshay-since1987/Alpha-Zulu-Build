@@ -11,3 +11,4 @@ Build your fontend by using this repo and node js in a very simple way.
 8. Run `node watch.js` to watch the file changes and build accordingly.
 9. ENJOY!!!
 
+**PS: We are using smarty templating here. At the moment no other templating is supported (Although many are in the future scope). To make changes please change in the settings.json .. Please!! Please!! be careful while doing a change in settings **
