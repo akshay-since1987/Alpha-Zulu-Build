@@ -13,4 +13,4 @@ Build your fontend by using this repo and node js in a very simple way.
 
 We would soon be adding support for a few more templating engines like **Handlebar, Jade, Mustache and Underscore**. Please stay tuned
 
-*PS: We are using smarty templating here. At the moment no other templating is supported (Although many are in the future scope). To make changes please change in the settings.json .. Please!! Please!! be careful while doing a change in settings *
+**PS: We are using smarty templating here. At the moment no other templating is supported (Although many are in the future scope). To make changes please change in the settings.json .. Please!! Please!! be careful while doing a change in settings.**
