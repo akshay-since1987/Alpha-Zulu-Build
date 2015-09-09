@@ -1,0 +1,107 @@
+{
+	"project" : "Deloitte-Digital",
+	"description": "A sample project for Deloitte Digital",
+	"version": "1.0.0",
+	"author": {
+	    "name": "Deloitte Digital",
+	    "url": "http://www.deloittedigital.com"
+	},
+	"engines": {
+	    "node": ">=0.8"
+  	},
+  	"scripts": { },
+  	"otherDependencies": [{"svgicons2svgfont": "3.1.0", "line-by-line": "0.1.4", "cheerio": "0.19.0", "colors": "1.1.2"}],
+	"server": {
+		"port"			: "8080",
+		"access-log"	: "server-access.log",
+		"error-log"		: "server-error.log"
+	},
+	"clean": {
+		"directories": ["build"]
+	},
+	"build" : {
+		"source": "src",
+		"destination": "build",
+		"processes": ["clean", "makeHTML","createFontIcons", "makeSCSS", "makeLESS", "runJSLINT", "copyJS", "compressCSS", "compressJS", "runTestCases", "copyResources", "resolvePath"]
+	},
+	"watch": {
+		"location" 		: "src",
+		"files": {
+			"less"		: "makeLESS, compressCSS, copyResources",
+			"scss"		: "makeSCSS, compressCSS, copyResources",
+			"js" 		: "runJSLINT, copyJS, compressJS, copyResources",
+			"smarty"	: "makeHTML, copyResources",
+			"html"		: "makeHTML, copyResources",
+			"tpl"		: "makeHTML, copyResources"
+		},
+		"folders": "copy"
+	},
+	"makeHTML": {
+		"src"		: ["src/templates"],
+		"pages"		: "src/templates/pages",
+		"dest" 		: "build",
+		"library"	: "jsmart",
+		"version"	: "2.13.0"
+	},
+	"makeLESS": {
+		"mainFiles"		: ["src/less/main"],
+		"partials"		: ["src/less/partials"],
+		"dest" 			: "build/css",
+		"library"		: "less",
+		"version"		: "2.5.1"
+	},
+	"makeSCSS": {
+		"mainFiles"		: ["src/sass/main"],
+		"partials"		: ["src/sass/partials"],
+		"dest" 			: "build/css",
+		"library"		: "node-sass",
+		"version"		: "3.3.2"
+	},
+	"compressCSS" : {
+		"src"		: ["build/css"],
+		"dest"		: "build/css",
+		"library"	: "node-minify",
+		"libToUse"	: "clean-css",
+		"version"	: "1.2.0"
+	},
+	"compressJS" : {
+		"src"		: ["build/scripts"],
+		"dest"		: "build/scripts",
+		"library"	: "node-minify",
+		"libToUse"	: "uglifyjs",
+		"version"	: "1.2.0"
+	},
+	"copyJS" : {
+		"src"		: ["src/scripts"],
+		"dest"		: "build/scripts",
+		"version"	: "1.0.0"
+	},
+	"runJSLINT" : {
+		"src"		: "src/scripts",
+		"dest"		: "build/scripts",
+		"exclude"	: ["(.*)jquery(.*)","(.*)require(.*)", "(.*)handlebars(.*)"],
+		"options"	: { },
+		"libToUse"	: "jslint",
+		"library"	: "jslint",
+		"version"	: "0.9.0"
+	},
+	"createFontIcons": {
+		"libToUse"				: "fontcustom",
+		"library"				: "fontcustom",
+		"source"				: "src/icons/",
+		"destination"			: "build/icons",
+		"font-name"				: "customFont",
+		"cssFile"				: true,
+		"cssLocation"			: "build/css/icons.css",
+		"version"				: "0.0.3"
+	},
+	"copyResources": [{
+		"apis": "build/apis",
+		"src/images": "build/images",
+		"src/less/partials/bootstrap-3.3.5/fonts": "build/fonts"
+	}],
+	"resolvePath": {
+		"source": "build",
+		"destination": "build"
+	}
+}
